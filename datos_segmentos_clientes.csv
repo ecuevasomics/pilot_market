@@ -1,0 +1,6 @@
+Segmento,Tamaño_Hato_Vacas,Potencial_Adopción,Volumen_Pruebas_Anuales,Precio_Promedio_USD,Ingresos_Potenciales_Millones_USD
+Ganaderos Especializados Grandes,500+,ALTO,30000,60,1.8
+Ganaderos Medianos Especializados,100-500,MEDIO-ALTO,15000,55,0.825
+Criadores y Reproductores,Variable,ALTO,8000,80,0.64
+Asociaciones y Cooperativas,Agregado,MEDIO,5000,50,0.25
+Instituciones de Investigación,Variable,MEDIO,2000,70,0.14

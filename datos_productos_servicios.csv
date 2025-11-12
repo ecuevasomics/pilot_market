@@ -1,0 +1,16 @@
+Producto_Servicio,Descripción,Mercado_Objetivo,Precio_USD,Costo_USD,Margen_Bruto_Porcentaje,Diferenciador,Fase_Lanzamiento,Demanda_Estimada
+Prueba Identificación Raza Perro,Identificación de razas y mezclas,Propietarios mascotas,45,25,44,Rápido y accesible,Mes 1,Alta
+Prueba Salud Genética Perro,Predisposición a enfermedades hereditarias,Criadores y veterinarios,65,35,46,Comprensivo y confiable,Mes 1,Alta
+Prueba Compatibilidad Reproductiva Perro,Análisis para apareamientos seguros,Criadores,80,40,50,Único en región,Mes 2,Media
+Prueba Identificación Raza Ganado,Pureza genética y composición racial,Ganaderos,55,30,45,Certificación,Mes 1,Alta
+Prueba Producción Lechera Ganado,Predicción de potencial productivo,Ganaderos especializados,75,40,47,Consultoría incluida,Mes 1,Alta
+Prueba Resistencia Enfermedades Ganado,Predisposición a mastitis y metritis,Ganaderos,70,38,46,Sostenibilidad,Mes 2,Media
+Plataforma Gestión Genética Perro,Portal online con histórico familiar,Criadores y veterinarios,80,0,100,Integración con veterinarios,Mes 3,Media
+Plataforma Gestión Genética Ganado,Dashboard de mejora genética,Ganaderos,100,0,100,Benchmarking regional,Mes 3,Media
+Reporte Personalizado Perro,Análisis detallado con recomendaciones,Propietarios premium,150,0,100,Educación incluida,Mes 2,Media
+Reporte Personalizado Ganado,Análisis con plan de mejora genética,Ganaderos,225,0,100,Asesoría técnica,Mes 2,Media
+Consultoría Genética Perro,Asesoría en selección y reproducción,Criadores profesionales,300,0,100,Expertos especializados,Mes 4,Baja
+Consultoría Genética Ganado,Asesoría estratégica de mejora genética,Ganaderos grandes,500,0,100,Expertos especializados,Mes 4,Baja
+Integración Laboratorios Veterinarios,API para laboratorios veterinarios,Laboratorios,200,0,100,Automatización,Mes 5,Media
+White-label Plataforma,Solución blanca para plataformas e-commerce,Plataformas digitales,1000,0,100,Personalización,Mes 6,Baja
+Análisis Poblacional Agregado,Datos de tendencias genéticas por región,Instituciones investigación,10000,0,100,Insights únicos,Mes 6,Baja

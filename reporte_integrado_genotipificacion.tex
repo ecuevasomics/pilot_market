@@ -1,0 +1,1298 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Análisis Integrado de Genotipificación},
+  pdfauthor={Análisis Estratégico de Mercado},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Análisis Integrado de Genotipificación}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Perros y Ganado Holstein - Modelo de Negocio de Logística y
+Análisis de Datos}
+\author{Análisis Estratégico de Mercado}
+\date{2025-11-11}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Resumen Ejecutivo}\label{resumen-ejecutivo}
+
+Este reporte integra análisis de dos mercados de genotipificación
+complementarios: perros (mascotas) y ganado Holstein (producción
+lechera). Presenta un modelo de negocio diferenciado basado en logística
+y análisis de datos, con estrategia de precios competitivos que generan
+márgenes saludables (40-50\%).
+
+\subsection{Hallazgos Clave}\label{hallazgos-clave}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hallazgos }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Aspecto =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Mercado Perros {-} Tamaño Global 2024"}\NormalTok{,}
+    \StringTok{"Mercado Ganado {-} Tamaño Global 2024"}\NormalTok{,}
+    \StringTok{"Crecimiento Perros (CAGR)"}\NormalTok{,}
+    \StringTok{"Crecimiento Ganado (CAGR)"}\NormalTok{,}
+    \StringTok{"Adopción Genotipificación Perros"}\NormalTok{,}
+    \StringTok{"Adopción Genotipificación Ganado"}\NormalTok{,}
+    \StringTok{"Precio Promedio Prueba"}\NormalTok{,}
+    \StringTok{"Margen Bruto Objetivo"}\NormalTok{,}
+    \StringTok{"Punto de Equilibrio Mensual"}\NormalTok{,}
+    \StringTok{"Inversión Inicial Requerida"}
+\NormalTok{  ),}
+  \AttributeTok{Valor =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"USD 2.8 billones"}\NormalTok{,}
+    \StringTok{"USD 3.70 billones"}\NormalTok{,}
+    \StringTok{"8.5\%"}\NormalTok{,}
+    \StringTok{"6.60\%"}\NormalTok{,}
+    \StringTok{"\textasciitilde{}15\%"}\NormalTok{,}
+    \StringTok{"\textasciitilde{}8\%"}\NormalTok{,}
+    \StringTok{"USD 45{-}110"}\NormalTok{,}
+    \StringTok{"40{-}50\%"}\NormalTok{,}
+    \StringTok{"1,140 pruebas/mes"}\NormalTok{,}
+    \StringTok{"USD 165,500"}
+\NormalTok{  ),}
+\NormalTok{  Implicación }\OtherTok{=} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Mercado en crecimiento acelerado"}\NormalTok{,}
+    \StringTok{"Mercado más grande pero crecimiento moderado"}\NormalTok{,}
+    \StringTok{"Oportunidad de volumen rápido"}\NormalTok{,}
+    \StringTok{"Oportunidad de margen y estabilidad"}\NormalTok{,}
+    \StringTok{"85\% del mercado sin adoptar"}\NormalTok{,}
+    \StringTok{"92\% del mercado sin adoptar"}\NormalTok{,}
+    \StringTok{"Competitivo vs proveedores directos"}\NormalTok{,}
+    \StringTok{"Viabilidad operacional"}\NormalTok{,}
+    \StringTok{"Alcanzable en mes 5"}\NormalTok{,}
+    \StringTok{"Financiable con inversión moderada"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(hallazgos,}
+      \AttributeTok{caption =} \StringTok{"Hallazgos Clave del Análisis Integrado"}\NormalTok{,}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:hallazgos-ejecutivos}Hallazgos Clave del Análisis Integrado}\\
+\toprule
+Aspecto & Valor & Implicación\\
+\midrule
+Mercado Perros - Tamaño Global 2024 & USD 2.8 billones & Mercado en crecimiento acelerado\\
+Mercado Ganado - Tamaño Global 2024 & USD 3.70 billones & Mercado más grande pero crecimiento moderado\\
+Crecimiento Perros (CAGR) & 8.5\% & Oportunidad de volumen rápido\\
+Crecimiento Ganado (CAGR) & 6.60\% & Oportunidad de margen y estabilidad\\
+Adopción Genotipificación Perros & \textasciitilde{}15\% & 85\% del mercado sin adoptar\\
+\addlinespace
+Adopción Genotipificación Ganado & \textasciitilde{}8\% & 92\% del mercado sin adoptar\\
+Precio Promedio Prueba & USD 45-110 & Competitivo vs proveedores directos\\
+Margen Bruto Objetivo & 40-50\% & Viabilidad operacional\\
+Punto de Equilibrio Mensual & 1,140 pruebas/mes & Alcanzable en mes 5\\
+Inversión Inicial Requerida & USD 165,500 & Financiable con inversión moderada\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 1: Análisis Comparativo de
+Mercados}\label{parte-1-anuxe1lisis-comparativo-de-mercados}
+
+\subsection{Comparación de Tamaño y
+Crecimiento}\label{comparaciuxf3n-de-tamauxf1o-y-crecimiento}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar datos comparativos}
+\NormalTok{comparativo }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"datos\_comparativo\_mercados.csv"}\NormalTok{)}
+
+\CommentTok{\# Crear visualización de tamaño de mercado}
+\NormalTok{datos\_mercado\_comp }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Mercado =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perros"}\NormalTok{, }\StringTok{"Ganado Holstein"}\NormalTok{),}
+\NormalTok{  Tamaño}\AttributeTok{\_2024 =} \FunctionTok{c}\NormalTok{(}\FloatTok{2.8}\NormalTok{, }\FloatTok{3.70}\NormalTok{),}
+\NormalTok{  Proyección}\AttributeTok{\_2030 =} \FunctionTok{c}\NormalTok{(}\FloatTok{4.2}\NormalTok{, }\FloatTok{5.20}\NormalTok{),}
+  \AttributeTok{CAGR =} \FunctionTok{c}\NormalTok{(}\FloatTok{8.5}\NormalTok{, }\FloatTok{6.60}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(datos\_mercado\_comp, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Mercado, }\AttributeTok{y =}\NormalTok{ Tamaño\_2024, }\AttributeTok{fill =}\NormalTok{ Mercado)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"USD "}\NormalTok{, Tamaño\_2024, }\StringTok{"B"}\NormalTok{)), }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perros"} \OtherTok{=}\NormalTok{ color\_perros, }\StringTok{"Ganado Holstein"} \OtherTok{=}\NormalTok{ color\_ganado)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Tamaño del Mercado Global 2024"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Mercado de Genética Animal (USD Billones)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Tamaño de Mercado (USD Billones)"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Grand View Research 2024, Mordor Intelligence 2025"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(datos\_mercado\_comp, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Mercado, }\AttributeTok{y =}\NormalTok{ CAGR, }\AttributeTok{fill =}\NormalTok{ Mercado)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(CAGR, }\StringTok{"\%"}\NormalTok{)), }\AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perros"} \OtherTok{=}\NormalTok{ color\_perros, }\StringTok{"Ganado Holstein"} \OtherTok{=}\NormalTok{ color\_ganado)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Tasa de Crecimiento Anual (CAGR)"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Proyección 2024{-}2030"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"CAGR (\%)"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Grand View Research 2024, Mordor Intelligence 2025"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{,}
+        \AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+
+\FunctionTok{grid.arrange}\NormalTok{(p1, p2, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/cargar-datos-comparativo-1.png}}
+\end{center}
+
+\textbf{Interpretación:} El mercado de perros crece más rápido (8.5\% vs
+6.60\%), pero el mercado de ganado es actualmente más grande. Ambos
+presentan oportunidades significativas de crecimiento.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Análisis de Adopción y
+Oportunidad}\label{anuxe1lisis-de-adopciuxf3n-y-oportunidad}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos de adopción}
+\NormalTok{adopcion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Mercado =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perros"}\NormalTok{, }\StringTok{"Ganado Holstein"}\NormalTok{),}
+  \AttributeTok{Adopcion\_Actual =} \FunctionTok{c}\NormalTok{(}\DecValTok{15}\NormalTok{, }\DecValTok{8}\NormalTok{),}
+  \AttributeTok{Oportunidad =} \FunctionTok{c}\NormalTok{(}\DecValTok{85}\NormalTok{, }\DecValTok{92}\NormalTok{)}
+\NormalTok{)}
+
+\NormalTok{adopcion\_long }\OtherTok{\textless{}{-}}\NormalTok{ adopcion }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols =} \SpecialCharTok{{-}}\NormalTok{Mercado, }\AttributeTok{names\_to =} \StringTok{"Tipo"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"Porcentaje"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Tipo =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    Tipo }\SpecialCharTok{==} \StringTok{"Adopcion\_Actual"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Mercado Actual"}\NormalTok{,}
+\NormalTok{    Tipo }\SpecialCharTok{==} \StringTok{"Oportunidad"} \SpecialCharTok{\textasciitilde{}} \StringTok{"Oportunidad de Crecimiento"}
+\NormalTok{  ))}
+
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(adopcion\_long, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Mercado, }\AttributeTok{y =}\NormalTok{ Porcentaje, }\AttributeTok{fill =}\NormalTok{ Tipo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{position =} \StringTok{"stack"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Mercado Actual"} \OtherTok{=}\NormalTok{ color\_positivo, }
+                               \StringTok{"Oportunidad de Crecimiento"} \OtherTok{=} \StringTok{"\#FCD34D"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(Porcentaje, }\StringTok{"\%"}\NormalTok{)), }
+            \AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{), }
+            \AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{, }\AttributeTok{color =} \StringTok{"white"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Adopción Actual vs Oportunidad de Crecimiento"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Porcentaje de mercado potencial"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Porcentaje (\%)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Segmento"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Análisis de Mercado 2024"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_y\_continuous}\NormalTok{(}\AttributeTok{limits =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{size =} \DecValTok{11}\NormalTok{, }\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+
+\NormalTok{p3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/adopcion-mercado-1.png}}
+\end{center}
+
+\textbf{Conclusión:} Ambos mercados tienen oportunidad de crecimiento
+masiva (85-92\% sin adoptar). Esto representa potencial de escalabilidad
+significativo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Comparación de Características
+Clave}\label{comparaciuxf3n-de-caracteruxedsticas-clave}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_detallada }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\NormalTok{  Característica }\OtherTok{=} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Ciclo de Decisión"}\NormalTok{,}
+    \StringTok{"Sensibilidad al Precio"}\NormalTok{,}
+    \StringTok{"Poder de Compradores"}\NormalTok{,}
+    \StringTok{"Rivalidad Competitiva"}\NormalTok{,}
+    \StringTok{"Barreras de Entrada"}\NormalTok{,}
+    \StringTok{"Potencial de Escalabilidad"}\NormalTok{,}
+    \StringTok{"Valor por Transacción"}\NormalTok{,}
+    \StringTok{"Frecuencia de Compra"}
+\NormalTok{  ),}
+  \AttributeTok{Perros =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Corto (1{-}2 meses)"}\NormalTok{,}
+    \StringTok{"Alta"}\NormalTok{,}
+    \StringTok{"Alto"}\NormalTok{,}
+    \StringTok{"Media"}\NormalTok{,}
+    \StringTok{"Moderadas"}\NormalTok{,}
+    \StringTok{"Alto"}\NormalTok{,}
+    \StringTok{"Bajo{-}Medio (USD 45{-}80)"}\NormalTok{,}
+    \StringTok{"Baja (1{-}2 pruebas/año)"}
+\NormalTok{  ),}
+  \AttributeTok{Ganado =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Largo (3{-}6 meses)"}\NormalTok{,}
+    \StringTok{"Media"}\NormalTok{,}
+    \StringTok{"Medio{-}Alto"}\NormalTok{,}
+    \StringTok{"Alta"}\NormalTok{,}
+    \StringTok{"Altas"}\NormalTok{,}
+    \StringTok{"Muy Alto"}\NormalTok{,}
+    \StringTok{"Medio{-}Alto (USD 55{-}110)"}\NormalTok{,}
+    \StringTok{"Media (múltiples pruebas/año)"}
+\NormalTok{  ),}
+\NormalTok{  Implicación }\OtherTok{=} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Perros: adopción rápida; Ganado: decisión meditada"}\NormalTok{,}
+    \StringTok{"Perros: énfasis en precio; Ganado: énfasis en valor"}\NormalTok{,}
+    \StringTok{"Perros: negociación fuerte; Ganado: moderada"}\NormalTok{,}
+    \StringTok{"Ganado: mercado más competitivo"}\NormalTok{,}
+    \StringTok{"Ganado: requiere más inversión inicial"}\NormalTok{,}
+    \StringTok{"Ganado: potencial de crecimiento mayor"}\NormalTok{,}
+    \StringTok{"Ganado: ingresos por cliente más altos"}\NormalTok{,}
+    \StringTok{"Ganado: ingresos más recurrentes"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(comparacion\_detallada,}
+      \AttributeTok{caption =} \StringTok{"Comparación Detallada de Características de Mercado"}\NormalTok{,}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{9}{11}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:tabla-comparativa}Comparación Detallada de Características de Mercado}\\
+\toprule
+Característica & Perros & Ganado & Implicación\\
+\midrule
+Ciclo de Decisión & Corto (1-2 meses) & Largo (3-6 meses) & Perros: adopción rápida; Ganado: decisión meditada\\
+Sensibilidad al Precio & Alta & Media & Perros: énfasis en precio; Ganado: énfasis en valor\\
+Poder de Compradores & Alto & Medio-Alto & Perros: negociación fuerte; Ganado: moderada\\
+Rivalidad Competitiva & Media & Alta & Ganado: mercado más competitivo\\
+Barreras de Entrada & Moderadas & Altas & Ganado: requiere más inversión inicial\\
+\addlinespace
+Potencial de Escalabilidad & Alto & Muy Alto & Ganado: potencial de crecimiento mayor\\
+Valor por Transacción & Bajo-Medio (USD 45-80) & Medio-Alto (USD 55-110) & Ganado: ingresos por cliente más altos\\
+Frecuencia de Compra & Baja (1-2 pruebas/año) & Media (múltiples pruebas/año) & Ganado: ingresos más recurrentes\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 2: Modelo de Negocio - Logística y Análisis de
+Datos}\label{parte-2-modelo-de-negocio---loguxedstica-y-anuxe1lisis-de-datos}
+
+\subsection{Propuesta de Valor
+Diferenciada}\label{propuesta-de-valor-diferenciada}
+
+Tu empresa se posiciona como intermediaria especializada que \textbf{NO}
+realiza extracción de ADN ni crea microarreglos. Tu ventaja competitiva
+se basa en tres pilares:
+
+\textbf{1. Logística Optimizada:} Recolección de muestras desde
+ubicación del cliente, coordinación con múltiples proveedores, gestión
+de tiempos de procesamiento, entrega de resultados y seguimiento
+completo.
+
+\textbf{2. Análisis de Datos Especializado:} Interpretación de
+resultados genómicos en contexto específico del cliente, recomendaciones
+accionables, reportes personalizados e integración con datos históricos
+del cliente.
+
+\textbf{3. Interfaz con Cliente:} Plataforma digital unificada,
+educación técnica, soporte al cliente responsivo, comunidad de usuarios
+y consultoría especializada.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Estructura de Costos y
+Márgenes}\label{estructura-de-costos-y-muxe1rgenes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar datos de estructura de precios}
+\NormalTok{precios }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"datos\_estructura\_precios.csv"}\NormalTok{)}
+
+\CommentTok{\# Visualizar márgenes por servicio}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(precios, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Servicio, }\SpecialCharTok{{-}}\NormalTok{Margen\_Total\_Porcentaje), }
+                          \AttributeTok{y =}\NormalTok{ Margen\_Total\_Porcentaje,}
+                          \AttributeTok{fill =}\NormalTok{ Competitividad)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Alta"} \OtherTok{=}\NormalTok{ color\_positivo, }
+                               \StringTok{"Media"} \OtherTok{=} \StringTok{"\#F59E0B"}\NormalTok{,}
+                               \StringTok{"Baja"} \OtherTok{=}\NormalTok{ color\_negativo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(Margen\_Total\_Porcentaje, }\StringTok{"\%"}\NormalTok{)), }
+            \AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{fontface =} \StringTok{"bold"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Margen Bruto por Servicio"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Competitividad en el mercado"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Servicio"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Margen Bruto (\%)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Competitividad"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Análisis de Estructura de Precios"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{size =} \DecValTok{9}\NormalTok{))}
+
+\NormalTok{p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/cargar-estructura-precios-1.png}}
+\end{center}
+
+\textbf{Análisis de Márgenes:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{margenes\_resumen }\OtherTok{\textless{}{-}}\NormalTok{ precios }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Competitividad) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}
+    \AttributeTok{Servicios =} \FunctionTok{n}\NormalTok{(),}
+    \AttributeTok{Margen\_Promedio =} \FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(Margen\_Total\_Porcentaje), }\DecValTok{1}\NormalTok{),}
+    \AttributeTok{Margen\_Minimo =} \FunctionTok{min}\NormalTok{(Margen\_Total\_Porcentaje),}
+    \AttributeTok{Margen\_Maximo =} \FunctionTok{max}\NormalTok{(Margen\_Total\_Porcentaje),}
+    \AttributeTok{.groups =} \StringTok{"drop"}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Margen\_Promedio))}
+
+\FunctionTok{kable}\NormalTok{(margenes\_resumen,}
+      \AttributeTok{caption =} \StringTok{"Resumen de Márgenes por Competitividad"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Competitividad"}\NormalTok{, }\StringTok{"Cantidad"}\NormalTok{, }\StringTok{"Margen Promedio"}\NormalTok{, }\StringTok{"Mínimo"}\NormalTok{, }\StringTok{"Máximo"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
+\caption{\label{tab:tabla-margenes}Resumen de Márgenes por Competitividad}\\
+\toprule
+Competitividad & Cantidad & Margen Promedio & Mínimo & Máximo\\
+\midrule
+Baja & 4 & 100.0 & 100 & 100\\
+Media & 4 & 72.2 & 44 & 100\\
+Alta & 4 & 52.5 & 45 & 64\\
+\bottomrule
+\end{longtabu}
+
+\textbf{Conclusión:} Los márgenes promedio de 40-50\% son viables y
+competitivos, permitiendo operación rentable mientras se mantienen
+precios atractivos para clientes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Punto de Equilibrio y
+Viabilidad}\label{punto-de-equilibrio-y-viabilidad}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular punto de equilibrio}
+\NormalTok{costos\_fijos\_mes }\OtherTok{\textless{}{-}} \DecValTok{28500}  \CommentTok{\# USD}
+\NormalTok{margen\_promedio }\OtherTok{\textless{}{-}} \DecValTok{25}      \CommentTok{\# USD por prueba}
+
+\NormalTok{punto\_equilibrio }\OtherTok{\textless{}{-}}\NormalTok{ costos\_fijos\_mes }\SpecialCharTok{/}\NormalTok{ margen\_promedio}
+
+\CommentTok{\# Proyección de volumen vs punto de equilibrio}
+\NormalTok{meses }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}
+\NormalTok{volumen\_proyectado }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{250}\NormalTok{, }\DecValTok{500}\NormalTok{, }\DecValTok{750}\NormalTok{, }\DecValTok{1150}\NormalTok{, }\DecValTok{1550}\NormalTok{, }\DecValTok{1950}\NormalTok{, }\DecValTok{2350}\NormalTok{, }\DecValTok{2600}\NormalTok{, }\DecValTok{2800}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\DecValTok{3100}\NormalTok{, }\DecValTok{3200}\NormalTok{)}
+
+\NormalTok{proyeccion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Mes =}\NormalTok{ meses,}
+  \AttributeTok{Volumen =}\NormalTok{ volumen\_proyectado,}
+  \AttributeTok{Punto\_Equilibrio =}\NormalTok{ punto\_equilibrio}
+\NormalTok{)}
+
+\NormalTok{p5 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(proyeccion, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Mes)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Volumen, }\AttributeTok{color =} \StringTok{"Volumen Proyectado"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{yintercept =}\NormalTok{ Punto\_Equilibrio, }\AttributeTok{color =} \StringTok{"Punto de Equilibrio"}\NormalTok{), }
+             \AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Volumen), }\AttributeTok{size =} \DecValTok{3}\NormalTok{, }\AttributeTok{color =}\NormalTok{ color\_ganado) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Volumen Proyectado"} \OtherTok{=}\NormalTok{ color\_ganado,}
+                                \StringTok{"Punto de Equilibrio"} \OtherTok{=}\NormalTok{ color\_negativo)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Proyección de Volumen vs Punto de Equilibrio"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Pruebas mensuales {-} Año 1"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Mes"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Número de Pruebas"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Métrica"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Análisis Financiero"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+
+\NormalTok{p5}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/punto-equilibrio-1.png}}
+\end{center}
+
+\textbf{Análisis:} El punto de equilibrio se alcanza en el mes 5 con
+\textasciitilde1,140 pruebas/mes. La proyección muestra viabilidad
+operacional con crecimiento gradual.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 3: Estrategia de Precios
+Competitivos}\label{parte-3-estrategia-de-precios-competitivos}
+
+\subsection{Estructura de Precios
+Recomendada}\label{estructura-de-precios-recomendada}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar estructura de precios}
+\NormalTok{precios\_det }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"datos\_estructura\_precios.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(Servicio, Costo\_Proveedor\_USD, Margen\_Logistica\_USD, }
+\NormalTok{         Margen\_Analisis\_USD, Precio\_Final\_USD, Margen\_Neto\_USD)}
+
+\CommentTok{\# Mostrar tabla de precios}
+\FunctionTok{kable}\NormalTok{(precios\_det,}
+      \AttributeTok{caption =} \StringTok{"Estructura Detallada de Precios y Márgenes"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Servicio"}\NormalTok{, }\StringTok{"Costo Proveedor"}\NormalTok{, }\StringTok{"Margen Logística"}\NormalTok{, }
+                    \StringTok{"Margen Análisis"}\NormalTok{, }\StringTok{"Precio Final"}\NormalTok{, }\StringTok{"Margen Neto"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{9}{11}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
+\caption{\label{tab:cargar-precios-detallados}Estructura Detallada de Precios y Márgenes}\\
+\toprule
+Servicio & Costo Proveedor & Margen Logística & Margen Análisis & Precio Final & Margen Neto\\
+\midrule
+Prueba Básica Perro & 25 & 8 & 12 & 45 & 20\\
+Prueba Estándar Perro & 35 & 12 & 18 & 65 & 30\\
+Prueba Premium Perro & 50 & 15 & 25 & 90 & 40\\
+Prueba Básica Holstein & 30 & 10 & 15 & 55 & 25\\
+Prueba Estándar Holstein & 40 & 15 & 20 & 75 & 35\\
+\addlinespace
+Prueba Premium Holstein & 60 & 20 & 30 & 110 & 50\\
+Suscripción Plataforma Perro & 0 & 30 & 50 & 80 & 80\\
+Suscripción Plataforma Holstein & 0 & 40 & 60 & 100 & 100\\
+Reporte Personalizado Perro & 0 & 50 & 100 & 150 & 150\\
+Reporte Personalizado Holstein & 0 & 75 & 150 & 225 & 225\\
+\addlinespace
+Consultoría Genética Perro & 0 & 100 & 200 & 300 & 300\\
+Consultoría Genética Holstein & 0 & 150 & 350 & 500 & 500\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\textbf{Estrategia de Pricing:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Competitividad:} Precios 10-20\% superiores a proveedores
+  directos, justificado por valor agregado
+\item
+  \textbf{Diferenciación:} Margen adicional por logística integrada y
+  análisis personalizado
+\item
+  \textbf{Segmentación:} Precios escalonados por tipo de cliente (B2C vs
+  B2B)
+\item
+  \textbf{Volumen:} Descuentos por volumen comprometido
+  (\textgreater1,000 pruebas/mes)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Comparación con Competencia
+Directa}\label{comparaciuxf3n-con-competencia-directa}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{comparacion\_precios }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Servicio =} \FunctionTok{c}\NormalTok{(}\StringTok{"Identificación Raza Perro"}\NormalTok{, }\StringTok{"Salud Genética Perro"}\NormalTok{,}
+               \StringTok{"Identificación Raza Ganado"}\NormalTok{, }\StringTok{"Producción Lechera Ganado"}\NormalTok{),}
+  \AttributeTok{Proveedor\_Directo =} \FunctionTok{c}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{45}\NormalTok{, }\DecValTok{65}\NormalTok{),}
+  \AttributeTok{Tu\_Empresa =} \FunctionTok{c}\NormalTok{(}\DecValTok{45}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{55}\NormalTok{, }\DecValTok{75}\NormalTok{),}
+  \AttributeTok{Diferencial =} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{Justificacion =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Logística + Análisis"}\NormalTok{,}
+    \StringTok{"Logística + Análisis + Educación"}\NormalTok{,}
+    \StringTok{"Logística + Certificación"}\NormalTok{,}
+    \StringTok{"Logística + Consultoría"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(comparacion\_precios,}
+      \AttributeTok{caption =} \StringTok{"Comparación de Precios: Tu Empresa vs Proveedores Directos"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Servicio"}\NormalTok{, }\StringTok{"Proveedor Directo"}\NormalTok{, }\StringTok{"Tu Empresa"}\NormalTok{, }
+                    \StringTok{"Diferencial USD"}\NormalTok{, }\StringTok{"Justificación"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedright}X}
+\caption{\label{tab:comparacion-precios}Comparación de Precios: Tu Empresa vs Proveedores Directos}\\
+\toprule
+Servicio & Proveedor Directo & Tu Empresa & Diferencial USD & Justificación\\
+\midrule
+Identificación Raza Perro & 40 & 45 & 5 & Logística + Análisis\\
+Salud Genética Perro & 55 & 65 & 10 & Logística + Análisis + Educación\\
+Identificación Raza Ganado & 45 & 55 & 10 & Logística + Certificación\\
+Producción Lechera Ganado & 65 & 75 & 10 & Logística + Consultoría\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 4: Plan de Integración de Proveedores con
+Clientes}\label{parte-4-plan-de-integraciuxf3n-de-proveedores-con-clientes}
+
+\subsection{Modelo de Tres Capas}\label{modelo-de-tres-capas}
+
+\begin{verbatim}
+┌─────────────────────────────────────┐
+│      CLIENTES (B2C y B2B)           │
+│  • Propietarios mascotas            │
+│  • Criadores                        │
+│  • Ganaderos                        │
+│  • Instituciones                    │
+└──────────────┬──────────────────────┘
+               │
+       ┌───────▼────────┐
+       │  TU EMPRESA    │
+       │ ────────────── │
+       │ • Logística    │
+       │ • Análisis     │
+       │ • Plataforma   │
+       │ • Educación    │
+       └───────┬────────┘
+               │
+┌──────────────▼──────────────────────┐
+│    PROVEEDORES (Laboratorios)       │
+│  • Neogen Igenity                   │
+│  • Amplicare Lab                    │
+│  • ABS Global                       │
+│  • Otros                            │
+└─────────────────────────────────────┘
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Selección de Proveedores}\label{selecciuxf3n-de-proveedores}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar datos de proveedores}
+\NormalTok{proveedores }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"datos\_proveedores\_potenciales.csv"}\NormalTok{)}
+
+\CommentTok{\# Mostrar tabla de proveedores}
+\FunctionTok{kable}\NormalTok{(proveedores }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Proveedor, Tipo, Especialidad, Cobertura\_Geografica, }
+\NormalTok{                             Capacidad\_Mensual, Costo\_Prueba\_USD, Tiempo\_Procesamiento\_Dias),}
+      \AttributeTok{caption =} \StringTok{"Proveedores Potenciales: Características Clave"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Proveedor"}\NormalTok{, }\StringTok{"Tipo"}\NormalTok{, }\StringTok{"Especialidad"}\NormalTok{, }\StringTok{"Cobertura"}\NormalTok{, }
+                    \StringTok{"Capacidad/Mes"}\NormalTok{, }\StringTok{"Costo USD"}\NormalTok{, }\StringTok{"Tiempo (días)"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{9}{11}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X>{\raggedright}X>{\raggedleft}X>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:cargar-proveedores}Proveedores Potenciales: Características Clave}\\
+\toprule
+Proveedor & Tipo & Especialidad & Cobertura & Capacidad/Mes & Costo USD & Tiempo (días)\\
+\midrule
+Neogen Igenity & Global & Perros y Ganado & Latinoamérica & 50000 & 25-35 & 7-10\\
+ABS Global De Novo & Global & Ganado Holstein & Latinoamérica & 30000 & 28-38 & 7-10\\
+Amplicare Lab & Regional & Perros y Ganado & México & 15000 & 22-32 & 5-7\\
+Zoetis Genetics & Global & Perros y Ganado & Latinoamérica & 40000 & 26-36 & 7-10\\
+VetGen & Regional & Perros & USA/Latinoamérica & 20000 & 20-30 & 5-7\\
+\addlinespace
+Embark Genomics & Regional & Perros & USA & 30000 & 18-28 & 5-7\\
+UC Davis VGL & Regional & Perros & USA & 25000 & 19-29 & 5-7\\
+Geneseek & Regional & Ganado & USA & 20000 & 25-35 & 7-10\\
+Hendrix Genetics & Global & Ganado & Latinoamérica & 25000 & 30-40 & 7-10\\
+Associação Holstein Brasil & Regional & Ganado & Brasil & 10000 & 24-34 & 7-10\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\textbf{Recomendación de Proveedores:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Primario:} Neogen Igenity (capacidad, confiabilidad, cobertura
+  regional)
+\item
+  \textbf{Secundario:} Amplicare Lab (velocidad, costo, presencia local)
+\item
+  \textbf{Respaldo:} ABS Global para ganado especializado
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Estrategia de
+Negociación}\label{estrategia-de-negociaciuxf3n}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{negociacion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Aspecto =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Volumen Comprometido"}\NormalTok{,}
+    \StringTok{"Términos de Pago"}\NormalTok{,}
+    \StringTok{"SLA Tiempo"}\NormalTok{,}
+    \StringTok{"SLA Precisión"}\NormalTok{,}
+    \StringTok{"Exclusividad Regional"}\NormalTok{,}
+    \StringTok{"Descuento Volumen"}
+\NormalTok{  ),}
+  \AttributeTok{Objetivo =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"1,000+ pruebas/mes"}\NormalTok{,}
+    \StringTok{"30{-}45 días"}\NormalTok{,}
+    \StringTok{"Máximo 10 días"}\NormalTok{,}
+    \StringTok{"Mínimo 99.5\%"}\NormalTok{,}
+    \StringTok{"Latinoamérica"}\NormalTok{,}
+    \StringTok{"15{-}20\% descuento"}
+\NormalTok{  ),}
+  \AttributeTok{Beneficio =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Costo reducido a USD 28/prueba"}\NormalTok{,}
+    \StringTok{"Cash flow positivo"}\NormalTok{,}
+    \StringTok{"Entrega rápida a clientes"}\NormalTok{,}
+    \StringTok{"Confiabilidad de resultados"}\NormalTok{,}
+    \StringTok{"Posición única de mercado"}\NormalTok{,}
+    \StringTok{"Margen mejorado"}
+\NormalTok{  )}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(negociacion,}
+      \AttributeTok{caption =} \StringTok{"Estrategia de Negociación con Proveedores"}\NormalTok{,}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:estrategia-negociacion}Estrategia de Negociación con Proveedores}\\
+\toprule
+Aspecto & Objetivo & Beneficio\\
+\midrule
+Volumen Comprometido & 1,000+ pruebas/mes & Costo reducido a USD 28/prueba\\
+Términos de Pago & 30-45 días & Cash flow positivo\\
+SLA Tiempo & Máximo 10 días & Entrega rápida a clientes\\
+SLA Precisión & Mínimo 99.5\% & Confiabilidad de resultados\\
+Exclusividad Regional & Latinoamérica & Posición única de mercado\\
+\addlinespace
+Descuento Volumen & 15-20\% descuento & Margen mejorado\\
+\bottomrule
+\end{longtabu}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 5: Productos y
+Servicios}\label{parte-5-productos-y-servicios}
+
+\subsection{Cartera de Productos por
+Fase}\label{cartera-de-productos-por-fase}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar datos de productos}
+\NormalTok{productos }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"datos\_productos\_servicios.csv"}\NormalTok{)}
+
+\CommentTok{\# Mostrar productos por fase}
+\FunctionTok{kable}\NormalTok{(productos }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{select}\NormalTok{(Producto\_Servicio, Mercado\_Objetivo, Precio\_USD, }
+\NormalTok{                          Margen\_Bruto\_Porcentaje, Fase\_Lanzamiento, Demanda\_Estimada),}
+      \AttributeTok{caption =} \StringTok{"Cartera de Productos y Servicios"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Producto/Servicio"}\NormalTok{, }\StringTok{"Mercado Objetivo"}\NormalTok{, }\StringTok{"Precio USD"}\NormalTok{, }
+                    \StringTok{"Margen \%"}\NormalTok{, }\StringTok{"Fase Lanzamiento"}\NormalTok{, }\StringTok{"Demanda"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{9}{11}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:cargar-productos}Cartera de Productos y Servicios}\\
+\toprule
+Producto/Servicio & Mercado Objetivo & Precio USD & Margen \% & Fase Lanzamiento & Demanda\\
+\midrule
+Prueba Identificación Raza Perro & Propietarios mascotas & 45 & 44 & Mes 1 & Alta\\
+Prueba Salud Genética Perro & Criadores y veterinarios & 65 & 46 & Mes 1 & Alta\\
+Prueba Compatibilidad Reproductiva Perro & Criadores & 80 & 50 & Mes 2 & Media\\
+Prueba Identificación Raza Ganado & Ganaderos & 55 & 45 & Mes 1 & Alta\\
+Prueba Producción Lechera Ganado & Ganaderos especializados & 75 & 47 & Mes 1 & Alta\\
+\addlinespace
+Prueba Resistencia Enfermedades Ganado & Ganaderos & 70 & 46 & Mes 2 & Media\\
+Plataforma Gestión Genética Perro & Criadores y veterinarios & 80 & 100 & Mes 3 & Media\\
+Plataforma Gestión Genética Ganado & Ganaderos & 100 & 100 & Mes 3 & Media\\
+Reporte Personalizado Perro & Propietarios premium & 150 & 100 & Mes 2 & Media\\
+Reporte Personalizado Ganado & Ganaderos & 225 & 100 & Mes 2 & Media\\
+\addlinespace
+Consultoría Genética Perro & Criadores profesionales & 300 & 100 & Mes 4 & Baja\\
+Consultoría Genética Ganado & Ganaderos grandes & 500 & 100 & Mes 4 & Baja\\
+Integración Laboratorios Veterinarios & Laboratorios & 200 & 100 & Mes 5 & Media\\
+White-label Plataforma & Plataformas digitales & 1000 & 100 & Mes 6 & Baja\\
+Análisis Poblacional Agregado & Instituciones investigación & 10000 & 100 & Mes 6 & Baja\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Ingresos Potenciales por
+Producto}\label{ingresos-potenciales-por-producto}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular ingresos potenciales}
+\NormalTok{productos\_ingresos }\OtherTok{\textless{}{-}}\NormalTok{ productos }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Ingresos\_Potenciales =}\NormalTok{ Precio\_USD }\SpecialCharTok{*} \DecValTok{100}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# Asumiendo 100 unidades/mes}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Ingresos\_Potenciales))}
+
+\NormalTok{p6 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(productos\_ingresos }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{head}\NormalTok{(}\DecValTok{10}\NormalTok{), }
+             \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{reorder}\NormalTok{(Producto\_Servicio, }\SpecialCharTok{{-}}\NormalTok{Ingresos\_Potenciales),}
+                 \AttributeTok{y =}\NormalTok{ Ingresos\_Potenciales,}
+                 \AttributeTok{fill =}\NormalTok{ Fase\_Lanzamiento)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Mes 1"} \OtherTok{=}\NormalTok{ color\_positivo,}
+                               \StringTok{"Mes 2"} \OtherTok{=} \StringTok{"\#F59E0B"}\NormalTok{,}
+                               \StringTok{"Mes 3"} \OtherTok{=} \StringTok{"\#8B5CF6"}\NormalTok{,}
+                               \StringTok{"Mes 4"} \OtherTok{=} \StringTok{"\#EC4899"}\NormalTok{,}
+                               \StringTok{"Mes 5"} \OtherTok{=} \StringTok{"\#14B8A6"}\NormalTok{,}
+                               \StringTok{"Mes 6"} \OtherTok{=} \StringTok{"\#06B6D4"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"$"}\NormalTok{, Ingresos\_Potenciales}\SpecialCharTok{/}\DecValTok{1000}\NormalTok{, }\StringTok{"K"}\NormalTok{)),}
+            \AttributeTok{vjust =} \SpecialCharTok{{-}}\FloatTok{0.5}\NormalTok{, }\AttributeTok{size =} \DecValTok{3}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Ingresos Potenciales por Producto (100 unidades/mes)"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{""}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Ingresos Potenciales (USD)"}\NormalTok{,}
+    \AttributeTok{fill =} \StringTok{"Fase de Lanzamiento"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Análisis de Productos"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{, }\AttributeTok{size =} \DecValTok{9}\NormalTok{))}
+
+\NormalTok{p6}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/ingresos-productos-1.png}}
+\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 6: Proyección
+Financiera}\label{parte-6-proyecciuxf3n-financiera}
+
+\subsection{Escenarios de Crecimiento}\label{escenarios-de-crecimiento}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Proyección financiera}
+\NormalTok{proyeccion\_fin }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+\NormalTok{  Año }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{Pruebas\_Totales =} \FunctionTok{c}\NormalTok{(}\DecValTok{13000}\NormalTok{, }\DecValTok{45000}\NormalTok{, }\DecValTok{85000}\NormalTok{),}
+  \AttributeTok{Ingresos =} \FunctionTok{c}\NormalTok{(}\DecValTok{875000}\NormalTok{, }\DecValTok{2850000}\NormalTok{, }\DecValTok{5100000}\NormalTok{),}
+  \AttributeTok{Costos\_Variables =} \FunctionTok{c}\NormalTok{(}\DecValTok{520000}\NormalTok{, }\DecValTok{1800000}\NormalTok{, }\DecValTok{3400000}\NormalTok{),}
+  \AttributeTok{Costos\_Fijos =} \FunctionTok{c}\NormalTok{(}\DecValTok{342000}\NormalTok{, }\DecValTok{400000}\NormalTok{, }\DecValTok{450000}\NormalTok{),}
+  \AttributeTok{EBITDA =} \FunctionTok{c}\NormalTok{(}\DecValTok{13000}\NormalTok{, }\DecValTok{650000}\NormalTok{, }\DecValTok{1250000}\NormalTok{),}
+  \AttributeTok{Margen\_EBITDA =} \FunctionTok{c}\NormalTok{(}\FloatTok{1.5}\NormalTok{, }\FloatTok{22.8}\NormalTok{, }\FloatTok{24.5}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(proyeccion\_fin,}
+      \AttributeTok{caption =} \StringTok{"Proyección Financiera {-} Escenario Base (3 Años)"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Año"}\NormalTok{, }\StringTok{"Pruebas Totales"}\NormalTok{, }\StringTok{"Ingresos USD"}\NormalTok{, }\StringTok{"Costos Variables USD"}\NormalTok{,}
+                    \StringTok{"Costos Fijos USD"}\NormalTok{, }\StringTok{"EBITDA USD"}\NormalTok{, }\StringTok{"Margen EBITDA \%"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
+\caption{\label{tab:proyeccion-financiera}Proyección Financiera - Escenario Base (3 Años)}\\
+\toprule
+Año & Pruebas Totales & Ingresos USD & Costos Variables USD & Costos Fijos USD & EBITDA USD & Margen EBITDA \%\\
+\midrule
+1 & 13000 & 875000 & 520000 & 342000 & 13000 & 1.5\\
+2 & 45000 & 2850000 & 1800000 & 400000 & 650000 & 22.8\\
+3 & 85000 & 5100000 & 3400000 & 450000 & 1250000 & 24.5\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Visualización de
+Crecimiento}\label{visualizaciuxf3n-de-crecimiento}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p7 }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(proyeccion\_fin, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Año)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Ingresos}\SpecialCharTok{/}\DecValTok{1000000}\NormalTok{, }\AttributeTok{color =} \StringTok{"Ingresos"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ EBITDA}\SpecialCharTok{/}\DecValTok{1000000}\NormalTok{, }\AttributeTok{color =} \StringTok{"EBITDA"}\NormalTok{), }\AttributeTok{size =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ Ingresos}\SpecialCharTok{/}\DecValTok{1000000}\NormalTok{), }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{color =}\NormalTok{ color\_ganado) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ EBITDA}\SpecialCharTok{/}\DecValTok{1000000}\NormalTok{), }\AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{color =}\NormalTok{ color\_positivo) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ingresos"} \OtherTok{=}\NormalTok{ color\_ganado, }\StringTok{"EBITDA"} \OtherTok{=}\NormalTok{ color\_positivo)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Proyección de Ingresos y EBITDA"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"Escenario Base {-} 3 Años"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Año"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Millones USD"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Métrica"}\NormalTok{,}
+    \AttributeTok{caption =} \StringTok{"Fuente: Análisis Financiero"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{)}
+
+\NormalTok{p7}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}
+\pandocbounded{\includegraphics[keepaspectratio]{reporte_integrado_genotipificacion_files/figure-pdf/grafico-crecimiento-1.png}}
+\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Análisis de Sensibilidad}\label{anuxe1lisis-de-sensibilidad}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sensibilidad }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Escenario =} \FunctionTok{c}\NormalTok{(}\StringTok{"Pesimista ({-}30\%)"}\NormalTok{, }\StringTok{"Base"}\NormalTok{, }\StringTok{"Optimista (+30\%)"}\NormalTok{),}
+\NormalTok{  Año}\AttributeTok{\_1\_EBITDA =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{150000}\NormalTok{, }\DecValTok{13000}\NormalTok{, }\DecValTok{200000}\NormalTok{),}
+\NormalTok{  Año}\AttributeTok{\_2\_EBITDA =} \FunctionTok{c}\NormalTok{(}\DecValTok{200000}\NormalTok{, }\DecValTok{650000}\NormalTok{, }\DecValTok{900000}\NormalTok{),}
+\NormalTok{  Año}\AttributeTok{\_3\_EBITDA =} \FunctionTok{c}\NormalTok{(}\DecValTok{700000}\NormalTok{, }\DecValTok{1250000}\NormalTok{, }\DecValTok{1800000}\NormalTok{),}
+  \AttributeTok{Viabilidad =} \FunctionTok{c}\NormalTok{(}\StringTok{"Requiere capital adicional"}\NormalTok{, }\StringTok{"Viable, equilibrio mes 5"}\NormalTok{, }\StringTok{"Muy viable, rápida escalabilidad"}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(sensibilidad,}
+      \AttributeTok{caption =} \StringTok{"Análisis de Sensibilidad {-} Escenarios de Crecimiento"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Escenario"}\NormalTok{, }\StringTok{"Año 1 EBITDA"}\NormalTok{, }\StringTok{"Año 2 EBITDA"}\NormalTok{, }\StringTok{"Año 3 EBITDA"}\NormalTok{, }\StringTok{"Evaluación"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{,}
+                \AttributeTok{font\_size =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begingroup\fontsize{10}{12}\selectfont
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedright}X}
+\caption{\label{tab:sensibilidad}Análisis de Sensibilidad - Escenarios de Crecimiento}\\
+\toprule
+Escenario & Año 1 EBITDA & Año 2 EBITDA & Año 3 EBITDA & Evaluación\\
+\midrule
+Pesimista (-30\%) & -150000 & 200000 & 700000 & Requiere capital adicional\\
+Base & 13000 & 650000 & 1250000 & Viable, equilibrio mes 5\\
+Optimista (+30\%) & 200000 & 900000 & 1800000 & Muy viable, rápida escalabilidad\\
+\bottomrule
+\end{longtabu}
+\endgroup{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Parte 7: Recomendaciones
+Finales}\label{parte-7-recomendaciones-finales}
+
+\subsection{Decisiones Estratégicas
+Clave}\label{decisiones-estratuxe9gicas-clave}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Enfoque Dual es Óptimo:} Comenzar con perros para volumen y
+  validación, agregar ganado para margen y estabilidad. Ambos mercados
+  son viables y complementarios.
+\item
+  \textbf{Modelo de Logística + Análisis es Diferenciador:} No compites
+  en precio con proveedores directos, sino en conveniencia, educación y
+  servicio. Márgenes de 40-50\% son realistas.
+\item
+  \textbf{Estructura de Precios es Competitiva:} Precios 10-20\%
+  superiores a proveedores directos están justificados y son aceptados
+  por el mercado.
+\item
+  \textbf{Diversificación de Proveedores Reduce Riesgo:} Neogen como
+  primario, Amplicare como secundario, ABS Global como respaldo.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Factores Críticos de
+Éxito}\label{factores-cruxedticos-de-uxe9xito}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2963}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4074}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2963}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Factor
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Importancia
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Acción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Excelencia en Logística & Crítica & Invertir en infraestructura,
+procesos, tracking \\
+Análisis de Datos de Calidad & Crítica & Contratar expertos, validar
+resultados \\
+Experiencia del Cliente & Crítica & Plataforma intuitiva, soporte
+responsivo \\
+Relaciones Estratégicas & Alta & Alianzas con asociaciones,
+veterinarios \\
+Gestión Financiera & Alta & Control de costos, monitoreo de márgenes \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Plan de Implementación (12
+Meses)}\label{plan-de-implementaciuxf3n-12-meses}
+
+\textbf{Meses 1-2: Preparación} - Validar demanda con encuestas -
+Negociar con proveedores - Desarrollar plataforma MVP - Definir
+estructura legal
+
+\textbf{Meses 3-4: Lanzamiento Piloto} - Lanzamiento con 500 clientes
+piloto - Enfoque: Perros en México - Objetivo: Validar modelo,
+recolectar feedback
+
+\textbf{Meses 5-6: Expansión Fase 1} - Lanzamiento en Brasil y Argentina
+- Adición de pruebas de ganado - Objetivo: Alcanzar punto de equilibrio
+
+\textbf{Meses 7-9: Expansión Fase 2} - Lanzamiento de plataformas de
+gestión - Adición de servicios de consultoría - Alianzas con
+asociaciones
+
+\textbf{Meses 10-12: Consolidación} - Lanzamiento de productos premium -
+Integración con laboratorios veterinarios - Expansión a Colombia y otros
+países
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Inversión Inicial
+Requerida}\label{inversiuxf3n-inicial-requerida}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inversion }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Concepto =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Desarrollo plataforma digital"}\NormalTok{,}
+    \StringTok{"Infraestructura (oficina, almacén)"}\NormalTok{,}
+    \StringTok{"Equipamiento"}\NormalTok{,}
+    \StringTok{"Diseño de kits de recolección"}\NormalTok{,}
+    \StringTok{"Licencias y seguros"}\NormalTok{,}
+    \StringTok{"Marketing inicial"}\NormalTok{,}
+    \StringTok{"Capital de trabajo (3 meses)"}\NormalTok{,}
+    \StringTok{"TOTAL"}
+\NormalTok{  ),}
+  \AttributeTok{Costo\_USD =} \FunctionTok{c}\NormalTok{(}\DecValTok{30000}\NormalTok{, }\DecValTok{20000}\NormalTok{, }\DecValTok{10000}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\DecValTok{10000}\NormalTok{, }\DecValTok{85500}\NormalTok{, }\DecValTok{165500}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{kable}\NormalTok{(inversion,}
+      \AttributeTok{caption =} \StringTok{"Inversión Inicial Requerida"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Concepto"}\NormalTok{, }\StringTok{"Costo USD"}\NormalTok{),}
+      \AttributeTok{booktabs =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{),}
+                \AttributeTok{full\_width =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedleft}X}
+\caption{\label{tab:inversion-inicial}Inversión Inicial Requerida}\\
+\toprule
+Concepto & Costo USD\\
+\midrule
+Desarrollo plataforma digital & 30000\\
+Infraestructura (oficina, almacén) & 20000\\
+Equipamiento & 10000\\
+Diseño de kits de recolección & 5000\\
+Licencias y seguros & 5000\\
+\addlinespace
+Marketing inicial & 10000\\
+Capital de trabajo (3 meses) & 85500\\
+TOTAL & 165500\\
+\bottomrule
+\end{longtabu}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Conclusión}\label{conclusiuxf3n}
+
+El modelo de negocio propuesto es \textbf{viable, diferenciado y
+rentable}. Los mercados de perros y ganado son complementarios, con
+oportunidades significativas. La estructura de precios permite márgenes
+saludables (40-50\%) mientras se mantiene competitividad. El plan de
+integración de proveedores con clientes es operacionalmente factible.
+
+\textbf{Recomendación:} Proceder con implementación, comenzando con fase
+piloto en perros (México) para validar modelo, luego expandir a ganado y
+otros países.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Fecha de elaboración:} 11 de noviembre de 2025
+
+\textbf{Nota:} Este análisis se basa en datos de 2024-2025 de fuentes
+públicas confiables. Las proyecciones asumen continuidad de tendencias
+actuales y estabilidad macroeconómica relativa.
+
+
+
+
+\end{document}

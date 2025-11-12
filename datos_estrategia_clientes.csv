@@ -1,0 +1,11 @@
+Segmento,Tipo_Cliente,Volumen_Mensual_Estimado,Precio_Promedio_USD,Margen_Esperado_USD,Canal_Venta_Primario,Diferenciador,Retención_Esperada
+Propietarios Perros Premium,B2C,5000,85,35,Plataforma Digital,Interfaz amigable + educación,85%
+Criadores Perros,B2B,2000,75,30,Directo + Asociaciones,Certificación + reportes,90%
+Clínicas Veterinarias,B2B,3000,70,28,Directo + Representantes,Integración con software vet,88%
+Ganaderos Especializados,B2B,2500,80,35,Directo + Asociaciones,Consultoría incluida,92%
+Criadores Ganado,B2B,1500,75,32,Directo,Certificación genética,90%
+Asociaciones Ganaderas,B2B,1000,65,25,Alianzas,Descuentos volumen,85%
+Instituciones Investigación,B2B,500,70,28,Directo,Acceso a datos agregados,80%
+Laboratorios Veterinarios,B2B,2000,72,30,Directo,Integración de servicios,87%
+Empresas Seguros Mascotas,B2B,1500,80,32,Directo,Datos para underwriting,88%
+Plataformas E-commerce Mascotas,B2B,2000,75,28,Alianzas,White-label solution,82%

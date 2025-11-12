@@ -1,0 +1,778 @@
+---
+title: "Análisis de Genotipificación"
+subtitle: "Perros y Ganado Holstein - Modelo de Negocio de Logística y Análisis de Datos"
+author: "Erick Cuevas Fernández"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    theme: cosmo
+    code-fold: true
+    fig-width: 14
+    fig-height: 8
+    embed-resources: true
+  pdf:
+    toc: true
+    number-sections: true
+    latex-engine: xelatex
+bibliography: referencias_holstein.bib
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  fig.align = "center",
+  dev = "png"
+)
+
+# Cargar librerías
+library(tidyverse)
+library(plotly)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(scales)
+library(gridExtra)
+library(readr)
+
+# Configurar tema
+theme_set(theme_minimal() + theme(
+  plot.title = element_text(size = 14, face = "bold"),
+  plot.subtitle = element_text(size = 11),
+  legend.position = "bottom",
+  axis.text = element_text(size = 10)
+))
+
+# Colores corporativos
+color_perros <- "#FF6B6B"
+color_ganado <- "#4ECDC4"
+color_positivo <- "#10B981"
+color_negativo <- "#EF4444"
+```
+
+# Resumen Ejecutivo
+
+Este reporte integra análisis de dos mercados de genotipificación
+complementarios: perros (mascotas) y ganado Holstein (producción
+lechera). Presenta un modelo de negocio diferenciado basado en logística
+y análisis de datos, con estrategia de precios competitivos que generan
+márgenes saludables (40-50%).
+
+## Hallazgos Clave
+
+```{r hallazgos-ejecutivos}
+hallazgos <- data.frame(
+  Aspecto = c(
+    "Mercado Perros - Tamaño Global 2024",
+    "Mercado Ganado - Tamaño Global 2024",
+    "Crecimiento Perros (CAGR)",
+    "Crecimiento Ganado (CAGR)",
+    "Adopción Genotipificación Perros",
+    "Adopción Genotipificación Ganado",
+    "Precio Promedio Prueba",
+    "Margen Bruto Objetivo",
+    "Punto de Equilibrio Mensual",
+    "Inversión Inicial Requerida"
+  ),
+  Valor = c(
+    "USD 2.8 billones",
+    "USD 3.70 billones",
+    "8.5%",
+    "6.60%",
+    "~15%",
+    "~8%",
+    "USD 45-110",
+    "40-50%",
+    "1,140 pruebas/mes",
+    "USD 165,500"
+  ),
+  Implicación = c(
+    "Mercado en crecimiento acelerado",
+    "Mercado más grande pero crecimiento moderado",
+    "Oportunidad de volumen rápido",
+    "Oportunidad de margen y estabilidad",
+    "85% del mercado sin adoptar",
+    "92% del mercado sin adoptar",
+    "Competitivo vs proveedores directos",
+    "Viabilidad operacional",
+    "Alcanzable en mes 5",
+    "Financiable con inversión moderada"
+  )
+)
+
+kable(hallazgos,
+      caption = "Hallazgos Clave del Análisis Integrado",
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 10)
+```
+
+------------------------------------------------------------------------
+
+# Parte 1: Análisis Comparativo de Mercados
+
+## Comparación de Tamaño y Crecimiento
+
+```{r cargar-datos-comparativo}
+# Cargar datos comparativos
+comparativo <- read_csv("datos_comparativo_mercados.csv")
+
+# Crear visualización de tamaño de mercado
+datos_mercado_comp <- data.frame(
+  Mercado = c("Perros", "Ganado Holstein"),
+  Tamaño_2024 = c(2.8, 3.70),
+  Proyección_2030 = c(4.2, 5.20),
+  CAGR = c(8.5, 6.60)
+)
+
+p1 <- ggplot(datos_mercado_comp, aes(x = Mercado, y = Tamaño_2024, fill = Mercado)) +
+  geom_bar(stat = "identity", alpha = 0.7) +
+  geom_text(aes(label = paste0("USD ", Tamaño_2024, "B")), vjust = -0.5, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Perros" = color_perros, "Ganado Holstein" = color_ganado)) +
+  labs(
+    title = "Tamaño del Mercado Global 2024",
+    subtitle = "Mercado de Genética Animal (USD Billones)",
+    x = "",
+    y = "Tamaño de Mercado (USD Billones)",
+    caption = "Fuente: Grand View Research 2024, Mordor Intelligence 2025"
+  ) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 11, face = "bold"))
+
+p2 <- ggplot(datos_mercado_comp, aes(x = Mercado, y = CAGR, fill = Mercado)) +
+  geom_bar(stat = "identity", alpha = 0.7) +
+  geom_text(aes(label = paste0(CAGR, "%")), vjust = -0.5, size = 4, fontface = "bold") +
+  scale_fill_manual(values = c("Perros" = color_perros, "Ganado Holstein" = color_ganado)) +
+  labs(
+    title = "Tasa de Crecimiento Anual (CAGR)",
+    subtitle = "Proyección 2024-2030",
+    x = "",
+    y = "CAGR (%)",
+    caption = "Fuente: Grand View Research 2024, Mordor Intelligence 2025"
+  ) +
+  theme(legend.position = "none",
+        axis.text.x = element_text(size = 11, face = "bold"))
+
+grid.arrange(p1, p2, ncol = 2)
+```
+
+El mercado de perros crece más rápido (8.5% vs 6.60%), pero el mercado
+de ganado es actualmente más grande. Ambos presentan oportunidades
+significativas de crecimiento.
+
+------------------------------------------------------------------------
+
+## Análisis de Adopción y Oportunidad
+
+```{r adopcion-mercado}
+# Datos de adopción
+adopcion <- data.frame(
+  Mercado = c("Perros", "Ganado Holstein"),
+  Adopcion_Actual = c(15, 8),
+  Oportunidad = c(85, 92)
+)
+
+adopcion_long <- adopcion %>%
+  pivot_longer(cols = -Mercado, names_to = "Tipo", values_to = "Porcentaje") %>%
+  mutate(Tipo = case_when(
+    Tipo == "Adopcion_Actual" ~ "Mercado Actual",
+    Tipo == "Oportunidad" ~ "Oportunidad de Crecimiento"
+  ))
+
+p3 <- ggplot(adopcion_long, aes(x = Mercado, y = Porcentaje, fill = Tipo)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_fill_manual(values = c("Mercado Actual" = color_positivo, 
+                               "Oportunidad de Crecimiento" = "#FCD34D")) +
+  geom_text(aes(label = paste0(Porcentaje, "%")), 
+            position = position_stack(vjust = 0.5), 
+            size = 4, fontface = "bold", color = "white") +
+  labs(
+    title = "Adopción Actual vs Oportunidad de Crecimiento",
+    subtitle = "Porcentaje de mercado potencial",
+    x = "",
+    y = "Porcentaje (%)",
+    fill = "Segmento",
+    caption = "Fuente: Análisis de Mercado 2024"
+  ) +
+  scale_y_continuous(limits = c(0, 100)) +
+  theme(axis.text.x = element_text(size = 11, face = "bold"))
+
+ggplotly(p3)
+```
+
+**Conclusión:** Ambos mercados tienen oportunidad de crecimiento masiva
+(85-92% sin adoptar). Esto representa potencial de escalabilidad
+significativo.
+
+------------------------------------------------------------------------
+
+## Comparación de Características Clave
+
+```{r tabla-comparativa}
+comparacion_detallada <- data.frame(
+  Característica = c(
+    "Ciclo de Decisión",
+    "Sensibilidad al Precio",
+    "Poder de Compradores",
+    "Rivalidad Competitiva",
+    "Barreras de Entrada",
+    "Potencial de Escalabilidad",
+    "Valor por Transacción",
+    "Frecuencia de Compra"
+  ),
+  Perros = c(
+    "Corto (1-2 meses)",
+    "Alta",
+    "Alto",
+    "Media",
+    "Moderadas",
+    "Alto",
+    "Bajo-Medio (USD 45-80)",
+    "Baja (1-2 pruebas/año)"
+  ),
+  Ganado = c(
+    "Largo (3-6 meses)",
+    "Media",
+    "Medio-Alto",
+    "Alta",
+    "Altas",
+    "Muy Alto",
+    "Medio-Alto (USD 55-110)",
+    "Media (múltiples pruebas/año)"
+  ),
+  Implicación = c(
+    "Perros: adopción rápida; Ganado: decisión meditada",
+    "Perros: énfasis en precio; Ganado: énfasis en valor",
+    "Perros: negociación fuerte; Ganado: moderada",
+    "Ganado: mercado más competitivo",
+    "Ganado: requiere más inversión inicial",
+    "Ganado: potencial de crecimiento mayor",
+    "Ganado: ingresos por cliente más altos",
+    "Ganado: ingresos más recurrentes"
+  )
+)
+
+kable(comparacion_detallada,
+      caption = "Comparación Detallada de Características de Mercado",
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 9)
+```
+
+------------------------------------------------------------------------
+
+# Parte 2: Modelo de Negocio - Logística y Análisis de Datos
+
+## Propuesta de Valor Diferenciada
+
+La empresa se posiciona como intermediaria especializada que **NO**
+realiza extracción de ADN ni crea microarreglos. La ventaja competitiva
+se basa en tres pilares:
+
+**1. Logística Optimizada:** Recolección de muestras desde ubicación del
+cliente, coordinación con múltiples proveedores, gestión de tiempos de
+procesamiento, entrega de resultados y seguimiento completo.
+
+**2. Análisis de Datos Especializado:** Interpretación de resultados
+genómicos en contexto específico del cliente, recomendaciones
+accionables, reportes personalizados e integración con datos históricos
+del cliente.
+
+**3. Interfaz con Cliente:** Plataforma digital unificada, educación
+técnica, soporte al cliente responsivo, comunidad de usuarios y
+consultoría especializada.
+
+------------------------------------------------------------------------
+
+## Estructura de Costos y Márgenes
+
+```{r cargar-estructura-precios}
+# Cargar datos de estructura de precios
+precios <- read_csv("datos_estructura_precios.csv")
+
+# Visualizar márgenes por servicio
+p4 <- ggplot(precios, aes(x = reorder(Servicio, -Margen_Total_Porcentaje), 
+                          y = Margen_Total_Porcentaje,
+                          fill = Competitividad)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Alta" = color_positivo, 
+                               "Media" = "#F59E0B",
+                               "Baja" = color_negativo)) +
+  geom_text(aes(label = paste0(Margen_Total_Porcentaje, "%")), 
+            vjust = -0.5, size = 3, fontface = "bold") +
+  labs(
+    title = "Margen Bruto por Servicio",
+    subtitle = "Competitividad en el mercado",
+    x = "Servicio",
+    y = "Margen Bruto (%)",
+    fill = "Competitividad",
+    caption = "Fuente: Análisis de Estructura de Precios"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9))
+
+ggplotly(p4)
+```
+
+**Análisis de Márgenes:**
+
+```{r tabla-margenes}
+margenes_resumen <- precios %>%
+  group_by(Competitividad) %>%
+  summarise(
+    Servicios = n(),
+    Margen_Promedio = round(mean(Margen_Total_Porcentaje), 1),
+    Margen_Minimo = min(Margen_Total_Porcentaje),
+    Margen_Maximo = max(Margen_Total_Porcentaje),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(Margen_Promedio))
+
+kable(margenes_resumen,
+      caption = "Resumen de Márgenes por Competitividad",
+      col.names = c("Competitividad", "Cantidad", "Margen Promedio", "Mínimo", "Máximo"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE)
+```
+
+Los márgenes promedio de 40-50% son viables y competitivos, permitiendo
+operación rentable mientras se mantienen precios atractivos para
+clientes.
+
+------------------------------------------------------------------------
+
+## Punto de Equilibrio y Viabilidad
+
+```{r punto-equilibrio}
+# Calcular punto de equilibrio
+costos_fijos_mes <- 28500  # USD
+margen_promedio <- 25      # USD por prueba
+
+punto_equilibrio <- costos_fijos_mes / margen_promedio
+
+# Proyección de volumen vs punto de equilibrio
+meses <- 1:12
+volumen_proyectado <- c(250, 500, 750, 1150, 1550, 1950, 2350, 2600, 2800, 3000, 3100, 3200)
+
+proyeccion <- data.frame(
+  Mes = meses,
+  Volumen = volumen_proyectado,
+  Punto_Equilibrio = punto_equilibrio
+)
+
+p5 <- ggplot(proyeccion, aes(x = Mes)) +
+  geom_line(aes(y = Volumen, color = "Volumen Proyectado"), size = 1.2) +
+  geom_hline(aes(yintercept = Punto_Equilibrio, color = "Punto de Equilibrio"), 
+             linetype = "dashed", size = 1) +
+  geom_point(aes(y = Volumen), size = 3, color = color_ganado) +
+  scale_color_manual(values = c("Volumen Proyectado" = color_ganado,
+                                "Punto de Equilibrio" = color_negativo)) +
+  labs(
+    title = "Proyección de Volumen vs Punto de Equilibrio",
+    subtitle = "Pruebas mensuales - Año 1",
+    x = "Mes",
+    y = "Número de Pruebas",
+    color = "Métrica",
+    caption = "Fuente: Análisis Financiero"
+  ) +
+  theme(legend.position = "bottom")
+
+ggplotly(p5)
+```
+
+El punto de equilibrio se alcanza en el mes 5 con \~1,140 pruebas/mes.
+La proyección muestra viabilidad operacional con crecimiento gradual.
+
+------------------------------------------------------------------------
+
+# Parte 3: Estrategia de Precios Competitivos
+
+## Estructura de Precios Recomendada
+
+```{r cargar-precios-detallados}
+# Cargar estructura de precios
+precios_det <- read_csv("datos_estructura_precios.csv") %>%
+  select(Servicio, Costo_Proveedor_USD, Margen_Logistica_USD, 
+         Margen_Analisis_USD, Precio_Final_USD, Margen_Neto_USD)
+
+# Mostrar tabla de precios
+kable(precios_det,
+      caption = "Estructura Detallada de Precios y Márgenes",
+      col.names = c("Servicio", "Costo Proveedor", "Margen Logística", 
+                    "Margen Análisis", "Precio Final", "Margen Neto"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 9)
+```
+
+**Estrategia de Pricing:**
+
+-   **Competitividad:** Precios 10-20% superiores a proveedores
+    directos, justificado por valor agregado
+-   **Diferenciación:** Margen adicional por logística integrada y
+    análisis personalizado
+-   **Segmentación:** Precios escalonados por tipo de cliente (B2C vs
+    B2B)
+-   **Volumen:** Descuentos por volumen comprometido (\>1,000
+    pruebas/mes)
+
+------------------------------------------------------------------------
+
+## Comparación con Competencia Directa
+
+```{r comparacion-precios}
+comparacion_precios <- data.frame(
+  Servicio = c("Identificación Raza Perro", "Salud Genética Perro",
+               "Identificación Raza Ganado", "Producción Lechera Ganado"),
+  Proveedor_Directo = c(40, 55, 45, 65),
+  Tu_Empresa = c(45, 65, 55, 75),
+  Diferencial = c(5, 10, 10, 10),
+  Justificacion = c(
+    "Logística + Análisis",
+    "Logística + Análisis + Educación",
+    "Logística + Certificación",
+    "Logística + Consultoría"
+  )
+)
+
+kable(comparacion_precios,
+      caption = "Comparación de Precios: Tu Empresa vs Proveedores Directos",
+      col.names = c("Servicio", "Proveedor Directo", "Tu Empresa", 
+                    "Diferencial USD", "Justificación"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 10)
+```
+
+------------------------------------------------------------------------
+
+# Parte 4: Plan de Integración de Proveedores con Clientes
+
+## Modelo de Tres Capas
+
+```{mermaid}
+
+graph TD
+    A["CLIENTES (B2C y B2B)<br>• Propietarios mascotas<br>• Criadores<br>• Ganaderos<br>• Instituciones"]
+    B["TU EMPRESA<br>──────────────<br>• Logística<br>• Análisis<br>• Plataforma<br>• Educación"]
+    C["PROVEEDORES (Laboratorios)<br>• Neogen Igenity<br>• Amplicare Lab<br>• ABS Global<br>• Otros"]
+
+    A --> B
+    B --> C
+```
+
+------------------------------------------------------------------------
+
+## Selección de Proveedores
+
+```{r cargar-proveedores}
+# Cargar datos de proveedores
+proveedores <- read_csv("datos_proveedores_potenciales.csv")
+
+# Mostrar tabla de proveedores
+kable(proveedores %>% select(Proveedor, Tipo, Especialidad, Cobertura_Geografica, 
+                             Capacidad_Mensual, Costo_Prueba_USD, Tiempo_Procesamiento_Dias),
+      caption = "Proveedores Potenciales: Características Clave",
+      col.names = c("Proveedor", "Tipo", "Especialidad", "Cobertura", 
+                    "Capacidad/Mes", "Costo USD", "Tiempo (días)"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 9)
+```
+
+**Recomendación de Proveedores:**
+
+-   **Primario:** [Neogen
+    Igenity](https://www.neogen.com/en/latam/solutions/igenity-profiles/)
+    (capacidad, confiabilidad, cobertura regional)
+-   **Secundario:** [Amplicare Lab](https://www.amplicarelab.com/)
+    (velocidad, costo, presencia local)
+-   **Respaldo:** [ABS Global](https://www.absglobal.com/mx/) para
+    ganado especializado
+
+------------------------------------------------------------------------
+
+## Estrategia de Negociación
+
+```{r estrategia-negociacion}
+negociacion <- data.frame(
+  Aspecto = c(
+    "Volumen Comprometido",
+    "Términos de Pago",
+    "SLA Tiempo",
+    "SLA Precisión",
+    "Exclusividad Regional",
+    "Descuento Volumen"
+  ),
+  Objetivo = c(
+    "1,000+ pruebas/mes",
+    "30-45 días",
+    "Máximo 10 días",
+    "Mínimo 99.5%",
+    "Latinoamérica",
+    "15-20% descuento"
+  ),
+  Beneficio = c(
+    "Costo reducido a USD 28/prueba",
+    "Cash flow positivo",
+    "Entrega rápida a clientes",
+    "Confiabilidad de resultados",
+    "Posición única de mercado",
+    "Margen mejorado"
+  )
+)
+
+kable(negociacion,
+      caption = "Estrategia de Negociación con Proveedores",
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE)
+```
+
+------------------------------------------------------------------------
+
+# Parte 5: Productos y Servicios
+
+## Cartera de Productos por Fase
+
+```{r cargar-productos}
+# Cargar datos de productos
+productos <- read_csv("datos_productos_servicios.csv")
+
+# Mostrar productos por fase
+kable(productos %>% select(Producto_Servicio, Mercado_Objetivo, Precio_USD, 
+                          Margen_Bruto_Porcentaje, Fase_Lanzamiento, Demanda_Estimada),
+      caption = "Cartera de Productos y Servicios",
+      col.names = c("Producto/Servicio", "Mercado Objetivo", "Precio USD", 
+                    "Margen %", "Fase Lanzamiento", "Demanda"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 9)
+```
+
+------------------------------------------------------------------------
+
+## Ingresos Potenciales por Producto
+
+```{r ingresos-productos}
+# Calcular ingresos potenciales
+productos_ingresos <- productos %>%
+  mutate(Ingresos_Potenciales = Precio_USD * 100) %>%  # Asumiendo 100 unidades/mes
+  arrange(desc(Ingresos_Potenciales))
+
+p6 <- ggplot(productos_ingresos %>% head(10), 
+             aes(x = reorder(Producto_Servicio, -Ingresos_Potenciales),
+                 y = Ingresos_Potenciales,
+                 fill = Fase_Lanzamiento)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Mes 1" = color_positivo,
+                               "Mes 2" = "#F59E0B",
+                               "Mes 3" = "#8B5CF6",
+                               "Mes 4" = "#EC4899",
+                               "Mes 5" = "#14B8A6",
+                               "Mes 6" = "#06B6D4")) +
+  geom_text(aes(label = paste0("$", Ingresos_Potenciales/1000, "K")),
+            vjust = -0.5, size = 3) +
+  labs(
+    title = "Ingresos Potenciales por Producto (100 unidades/mes)",
+    x = "",
+    y = "Ingresos Potenciales (USD)",
+    fill = "Fase de Lanzamiento",
+    caption = "Fuente: Análisis de Productos"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 9))
+
+ggplotly(p6)
+```
+
+------------------------------------------------------------------------
+
+# Parte 6: Proyección Financiera
+
+## Escenarios de Crecimiento
+
+```{r proyeccion-financiera}
+# Proyección financiera
+proyeccion_fin <- data.frame(
+  Año = c(1, 2, 3),
+  Pruebas_Totales = c(13000, 45000, 85000),
+  Ingresos = c(875000, 2850000, 5100000),
+  Costos_Variables = c(520000, 1800000, 3400000),
+  Costos_Fijos = c(342000, 400000, 450000),
+  EBITDA = c(13000, 650000, 1250000),
+  Margen_EBITDA = c(1.5, 22.8, 24.5)
+)
+
+kable(proyeccion_fin,
+      caption = "Proyección Financiera - Escenario Base (3 Años)",
+      col.names = c("Año", "Pruebas Totales", "Ingresos USD", "Costos Variables USD",
+                    "Costos Fijos USD", "EBITDA USD", "Margen EBITDA %"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 10)
+```
+
+------------------------------------------------------------------------
+
+## Visualización de Crecimiento
+
+```{r grafico-crecimiento}
+p7 <- ggplot(proyeccion_fin, aes(x = Año)) +
+  geom_line(aes(y = Ingresos/1000000, color = "Ingresos"), size = 1.2) +
+  geom_line(aes(y = EBITDA/1000000, color = "EBITDA"), size = 1.2) +
+  geom_point(aes(y = Ingresos/1000000), size = 4, color = color_ganado) +
+  geom_point(aes(y = EBITDA/1000000), size = 4, color = color_positivo) +
+  scale_color_manual(values = c("Ingresos" = color_ganado, "EBITDA" = color_positivo)) +
+  labs(
+    title = "Proyección de Ingresos y EBITDA",
+    subtitle = "Escenario Base - 3 Años",
+    x = "Año",
+    y = "Millones USD",
+    color = "Métrica",
+    caption = "Fuente: Análisis Financiero"
+  ) +
+  theme(legend.position = "bottom")
+
+ggplotly(p7)
+```
+
+------------------------------------------------------------------------
+
+## Análisis de Sensibilidad
+
+```{r sensibilidad}
+sensibilidad <- data.frame(
+  Escenario = c("Pesimista (-30%)", "Base", "Optimista (+30%)"),
+  Año_1_EBITDA = c(-150000, 13000, 200000),
+  Año_2_EBITDA = c(200000, 650000, 900000),
+  Año_3_EBITDA = c(700000, 1250000, 1800000),
+  Viabilidad = c("Requiere capital adicional", "Viable, equilibrio mes 5", "Muy viable, rápida escalabilidad")
+)
+
+kable(sensibilidad,
+      caption = "Análisis de Sensibilidad - Escenarios de Crecimiento",
+      col.names = c("Escenario", "Año 1 EBITDA", "Año 2 EBITDA", "Año 3 EBITDA", "Evaluación"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE,
+                font_size = 10)
+```
+
+------------------------------------------------------------------------
+
+# Parte 7: Recomendaciones Finales
+
+## Decisiones Estratégicas Clave
+
+1.  **Enfoque Dual es Óptimo:** Comenzar con perros para volumen y
+    validación, agregar ganado para margen y estabilidad. Ambos mercados
+    son viables y complementarios.
+
+2.  **Modelo de Logística + Análisis es Diferenciador:** No compites en
+    precio con proveedores directos, sino en conveniencia, educación y
+    servicio. Márgenes de 40-50% son realistas.
+
+3.  **Estructura de Precios es Competitiva:** Precios 10-20% superiores
+    a proveedores directos están justificados y son aceptados por el
+    mercado.
+
+4.  **Diversificación de Proveedores Reduce Riesgo:** Neogen como
+    primario, Amplicare como secundario, ABS Global como respaldo.
+
+------------------------------------------------------------------------
+
+## Factores Críticos de Éxito
+
+| Factor | Importancia | Acción |
+|----------------------|-----------------------------|----------------------|
+| Excelencia en Logística | Crítica | Invertir en infraestructura, procesos, tracking |
+| Análisis de Datos de Calidad | Crítica | Contratar expertos, validar resultados |
+| Experiencia del Cliente | Crítica | Plataforma intuitiva, soporte responsivo |
+| Relaciones Estratégicas | Alta | Alianzas con asociaciones, veterinarios |
+| Gestión Financiera | Alta | Control de costos, monitoreo de márgenes |
+
+------------------------------------------------------------------------
+
+## Plan de Implementación (12 Meses)
+
+**Meses 1-2: Preparación** - Validar demanda con encuestas - Negociar
+con proveedores - Desarrollar plataforma MVP - Definir estructura legal
+
+**Meses 3-4: Lanzamiento Piloto** - Lanzamiento con 500 clientes
+piloto - Enfoque: Perros en México - Objetivo: Validar modelo,
+recolectar feedback
+
+**Meses 5-6: Expansión Fase 1** - Lanzamiento en Brasil y Argentina -
+Adición de pruebas de ganado - Objetivo: Alcanzar punto de equilibrio
+
+**Meses 7-9: Expansión Fase 2** - Lanzamiento de plataformas de
+gestión - Adición de servicios de consultoría - Alianzas con
+asociaciones
+
+**Meses 10-12: Consolidación** - Lanzamiento de productos premium -
+Integración con laboratorios veterinarios - Expansión a Colombia y otros
+países
+
+------------------------------------------------------------------------
+
+## Inversión Inicial Requerida
+
+```{r inversion-inicial}
+inversion <- data.frame(
+  Concepto = c(
+    "Desarrollo plataforma digital",
+    "Infraestructura (oficina, almacén)",
+    "Equipamiento",
+    "Diseño de kits de recolección",
+    "Licencias y seguros",
+    "Marketing inicial",
+    "Capital de trabajo (3 meses)",
+    "TOTAL"
+  ),
+  Costo_USD = c(30000, 20000, 10000, 5000, 5000, 10000, 85500, 165500)
+)
+
+kable(inversion,
+      caption = "Inversión Inicial Requerida",
+      col.names = c("Concepto", "Costo USD"),
+      booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = TRUE)
+```
+
+------------------------------------------------------------------------
+
+# Conclusión
+
+El modelo de negocio propuesto es **viable, diferenciado y rentable**.
+Los mercados de perros y ganado son complementarios, con oportunidades
+significativas. La estructura de precios permite márgenes saludables
+(40-50%) mientras se mantiene competitividad. El plan de integración de
+proveedores con clientes es operacionalmente factible.
+
+**Recomendación:** Proceder con implementación, comenzando con fase
+piloto en perros (México) para validar modelo, luego expandir a ganado y
+otros países.
+
+------------------------------------------------------------------------
+
+**Fecha de elaboración:** `r format(Sys.Date(), "%d de %B de %Y")`
+
+**Nota:** Este análisis se basa en datos de 2024-2025 de fuentes
+públicas confiables. Las proyecciones asumen continuidad de tendencias
+actuales y estabilidad macroeconómica relativa.
