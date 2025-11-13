@@ -469,6 +469,15 @@ kable(df,
 
 ```
 
+### Otros precios no disponibles en México
+
+Usando una VPN se puede tener acceso al catago de precios de los
+siguientes laboratorios:
+
+![](fig1.png){fig-align="center" width="550"}
+
+![](fig2.png){fig-align="center" width="550"}
+
 ```{r cargar-estructura-precios}
 # Cargar datos de estructura de precios
 precios <- read_csv("datos_estructura_precios.csv")
