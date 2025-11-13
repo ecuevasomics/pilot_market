@@ -209,9 +209,8 @@ p3 <- ggplot(adopcion_long, aes(x = Mercado, y = Porcentaje, fill = Tipo)) +
 ggplotly(p3)
 ```
 
-**Conclusión:** Ambos mercados tienen oportunidad de crecimiento masiva
-(85-92% sin adoptar). Esto representa potencial de escalabilidad
-significativo.
+Ambos mercados tienen oportunidad de crecimiento masiva (85-92% sin
+adoptar). Esto representa potencial de escalabilidad significativo.
 
 ------------------------------------------------------------------------
 
