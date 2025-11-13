@@ -1,13 +1,11 @@
-Servicio,Costo_Proveedor_USD,Margen_Logistica_USD,Margen_Analisis_USD,Precio_Final_USD,Margen_Total_Porcentaje,Margen_Neto_USD,Competitividad
-Prueba Básica Perro,25,8,12,45,64,20,Alta
-Prueba Estándar Perro,35,12,18,65,54,30,Alta
-Prueba Premium Perro,50,15,25,90,44,40,Media
-Prueba Básica Holstein,30,10,15,55,45,25,Alta
-Prueba Estándar Holstein,40,15,20,75,47,35,Alta
-Prueba Premium Holstein,60,20,30,110,45,50,Media
-Suscripción Plataforma Perro,0,30,50,80,100,80,Media
-Suscripción Plataforma Holstein,0,40,60,100,100,100,Media
-Reporte Personalizado Perro,0,50,100,150,100,150,Baja
-Reporte Personalizado Holstein,0,75,150,225,100,225,Baja
-Consultoría Genética Perro,0,100,200,300,100,300,Baja
-Consultoría Genética Holstein,0,150,350,500,100,500,Baja
+Servicio,Costo_Proveedor_USD,Margen_Logistica_USD,Costo_extración_ADN_USD,Margen_Analisis_USD,Precio_Final_USD,Margen_Total_Porcentaje,Margen_Neto_USD,Competitividad
+Prueba Básica Perro,99,8,93,12,212,16.81,20,Alta
+Prueba Estándar Perro,103,12,93,18,226,22.56,30,Alta
+Prueba Premium Perro,130,15,93,25,263,23.53,40,Media
+Prueba Básica Holstein,30,10,93,15,148,45,25,Alta
+Prueba Estándar Holstein,43,15,93,20,168,47,35,Alta
+Prueba Premium Holstein,60,20,93,30,203,45,50,Media
+Reporte Personalizado Perro,0,50,0,100,150,100,150,Baja
+Reporte Personalizado Holstein,0,75,0,150,225,100,225,Baja
+Consultoría Genética Perro,0,100,0,200,300,100,300,Baja
+Consultoría Genética Holstein,0,150,0,350,500,100,500,Baja
