@@ -275,7 +275,7 @@ kable(comparacion_detallada,
 
 ## Propuesta de Valor Diferenciada
 
-La empresa se posiciona como intermediaria especializada que **NO**
+OMICs analysis se posiciona como intermediaria especializada que **NO**
 realiza extracción de ADN ni crea microarreglos. La ventaja competitiva
 se basa en tres pilares:
 
@@ -472,7 +472,7 @@ kable(df,
 ### Otros precios no disponibles en México
 
 Usando una VPN se puede tener acceso al catago de precios de los
-siguientes laboratorios:
+siguientes laboratorios para ganado:
 
 ![](fig1.png){fig-align="center" width="550"}
 
